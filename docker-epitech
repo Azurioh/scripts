@@ -1,0 +1,5 @@
+#!/bin/bash
+
+CONTAINER_ID=$(docker run -it -v $(pwd):/mac --hostname=7531dc288b5d --env=PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin --env=DISTTAG=f36container --env=FGC=f36 --env=FBR=f36 --env=LANG=en_US.utf8 --env=LANGUAGE=en_US:en --env=LC_ALL=en_US.utf8 --env=PKG_CONFIG_PATH=/usr/local/lib/pkgconfig --workdir=/mac --label='maintainer=Thomas Dufour <thomas.dufour@epitech.eu>' --runtime=runc -d epitechcontent/epitest-docker:devel)
+
+docker exec -it $CONTAINER_ID /bin/sh

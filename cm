@@ -1,0 +1,19 @@
+#!/bin/bash
+
+BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
+
+if [[ $BRANCH_NAME =~ (KAN-[0-9]+) ]]; then
+  KANBAN_TICKET="${BASH_REMATCH[1]}"
+
+  echo "Entrez votre message de commit ($KANBAN_TICKET):"
+  read -r COMMIT_MSG
+
+  FULL_COMMIT_MSG="feat($KANBAN_TICKET): $COMMIT_MSG"
+
+  git commit -m "$FULL_COMMIT_MSG"
+else
+  echo "Entrez votre message de commit :"
+  read -r COMMIT_MSG
+
+  git commit -m "$COMMIT_MSG"
+fi
